@@ -1,9 +1,9 @@
 <html>
 <head>
 	<title>Time Tracker</title>
-	<link href="/timetrack/css/common.css" rel="stylesheet" type="text/css" />
+	<link href="<?=base_url()?>css/common.css" rel="stylesheet" type="text/css" />
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-	<script type="text/javascript" src="/timetrack/js/common.js"></script>
+	<script type="text/javascript" src="<?=base_url()?>js/common.js"></script>
 </head>
 
 <body onload="initialize();">
@@ -22,7 +22,7 @@
 </div>
 
 <div id="footer"> 
-	Copyright &copy; 2010 PikaLabs/Michael Gagnon | No License | Internal Development Version
+	Copyright &copy; 2010 Michael Gagnon | <a href="http://www.gnu.org/licenses/gpl-3.0.html">GPLv3 License</a> | v0.2a1 (we have bugs)
 </div>
 
 </body>
