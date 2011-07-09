@@ -22,7 +22,7 @@
 </div>
 
 <div id="footer"> 
-	Copyright &copy; 2010 Michael Gagnon | <a href="http://www.gnu.org/licenses/gpl-3.0.html">GPLv3 License</a> | v0.2a1 (we have bugs)
+	Copyright &copy; 2011 Michael Gagnon | <a href="http://www.gnu.org/licenses/gpl-3.0.html">GPLv3 License</a> | v0.2a1 (we have bugs)
 </div>
 
 </body>
