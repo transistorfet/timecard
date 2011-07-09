@@ -1,0 +1,117 @@
+body {
+
+  background-color: #eeeeec;
+  font-family: sans-serif;
+  font-size: 0.9em;
+  color: #2e3436;
+
+}
+
+td {
+  font-size: 0.9em;
+}
+
+th {
+  font-size: 0.9em;
+  text-align: left;
+}
+
+a {
+	text-decoration: none;
+	color: #ce5c00;
+	background: none;
+}
+a:visited { color: #ce5c00; }
+a:active { color: #ce5c00; }
+a:hover { 
+	color: #f57900;
+	text-decoration: underline;
+}
+
+
+h1 {
+  text-align: center;
+  color: #204a87;
+}
+
+.taskLogRow {
+  
+  display: none;
+
+} 
+
+#newtask {
+
+  padding-bottom: 15px;
+  text-align: center;
+
+}
+
+#msg {
+  height: 30px;
+  text-align: center;
+}
+
+#taskListTable {
+  width: 100%;
+}
+
+.taskTime {
+  width: 70px;
+}
+
+.taskStatus {
+  width: 50px;
+}
+
+.taskClock {
+  display: none;
+}
+
+.taskLogArea {
+
+  padding-top: 5px;
+  padding-bottom: 10px;
+
+}
+
+.worklog {
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+}
+
+.worklog th {
+  font-size: 0.8em;
+}
+
+.logDateTime {
+  width: 150px;
+}
+
+.logTime {
+  width: 75px;
+}
+
+.logActions {
+  width: 50px;
+}
+
+
+.worklog td {
+  font-size: 0.8em;
+}
+
+#footer {
+  font-size: 0.7em;
+  color: #2e3436;
+  text-align: center;
+  padding-top: 30px;
+}
+
+#hint {
+  text-align: center;
+  color: #2e3436;
+  font-size: 0.8em;
+  padding-top: 50px;
+}
