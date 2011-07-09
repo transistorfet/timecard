@@ -1,13 +1,13 @@
 <html>
 <head>
-	<title>Time Tracker</title>
+	<title>phpTimecard</title>
 	<link href="<?=base_url()?>css/common.css" rel="stylesheet" type="text/css" />
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 	<script type="text/javascript" src="<?=base_url()?>js/common.js"></script>
 </head>
 
 <body onload="initialize();">
-<h1>Time Tracker</h1>
+<h1>phpTimecard</h1>
 
 <div id="msg"></div>
 
