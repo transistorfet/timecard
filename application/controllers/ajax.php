@@ -58,10 +58,16 @@ class Ajax extends CI_Controller {
 	public function log()
 	{
 
-		if(!empty($_GET['i'])) $id=$_GET['i'];
-		else die('error');
+		$id = $this->input->get('i');
 
-		$this->timeview->worklog($id);
+		$this->db->order_by('start','desc');
+		$this->db->select('*,UNIX_TIMESTAMP(start) as start_timestamp,UNIX_TIMESTAMP(end) as end_timestamp');
+		$this->db->where('taskid',$id);
+		$query = $this->db->get('worklog');
+
+		$worklog = $query->result();		
+
+		echo json_encode(array('log'=>$worklog));
 
 	}
 

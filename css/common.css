@@ -7,13 +7,27 @@ body {
 
 }
 
-td {
-  font-size: 0.9em;
+#container
+{
+	min-width: 960px;
+	max-width: 1400px;
 }
 
-th {
-  font-size: 0.9em;
-  text-align: left;
+table
+{
+	border-collapse: collapse;
+}
+
+th
+{
+	text-align: center;
+}
+
+td, th
+{
+	border: 1px solid #ccc;
+  font-size: 0.8em;
+	padding: 6px;
 }
 
 a {
@@ -28,10 +42,62 @@ a:hover {
 	text-decoration: underline;
 }
 
+#main_left
+{
+	float: left;
+	width: 40%;
+}
 
-h1 {
+#main_right
+{
+	float: left;
+	width: 60%;
+	text-align: center;
+}
+
+#msg {
+	line-height: 3em;
+}
+
+#newtask 
+{
+  padding-top: 15px;
+}
+
+#hint {
+	clear: both;
   text-align: center;
+  color: #2e3436;
+  font-size: 0.8em;
+  padding-top: 50px;
+	padding-bottom: 80px;
+}
+
+#project_name {
+	text-align: center;
+	clear: both;
+	width: 30%;
+	float: left;
   color: #204a87;
+}
+
+#footer {
+	float: left;
+	width: 70%;
+  font-size: 0.7em;
+  color: #2e3436;
+  text-align: center;
+  padding-top: 30px;
+}
+
+.hidden
+{
+	display: none;
+}
+
+.taskStatus
+{
+	width: 22px;
 }
 
 .taskLogRow {
@@ -40,49 +106,8 @@ h1 {
 
 } 
 
-#newtask {
-
-  padding-bottom: 15px;
-  text-align: center;
-
-}
-
-#msg {
-  height: 30px;
-  text-align: center;
-}
-
-#taskListTable {
-  width: 100%;
-}
-
-.taskTime {
-  width: 70px;
-}
-
-.taskStatus {
-  width: 50px;
-}
-
 .taskClock {
   display: none;
-}
-
-.taskLogArea {
-
-  padding-top: 5px;
-  padding-bottom: 10px;
-
-}
-
-.worklog {
-  margin-left: auto;
-  margin-right: auto;
-  width: 70%;
-}
-
-.worklog th {
-  font-size: 0.8em;
 }
 
 .logDateTime {
@@ -98,20 +123,8 @@ h1 {
 }
 
 
-.worklog td {
-  font-size: 0.8em;
-}
 
-#footer {
-  font-size: 0.7em;
-  color: #2e3436;
-  text-align: center;
-  padding-top: 30px;
-}
 
-#hint {
-  text-align: center;
-  color: #2e3436;
-  font-size: 0.8em;
-  padding-top: 50px;
-}
+
+
+
