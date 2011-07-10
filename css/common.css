@@ -48,6 +48,11 @@ a:hover {
 	width: 40%;
 }
 
+#taskListTable
+{
+	width: 100%;
+}
+
 #taskList
 {
 	max-height: 90%;
