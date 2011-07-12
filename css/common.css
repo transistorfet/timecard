@@ -74,20 +74,14 @@ a:hover {
 }
 
 #project_name {
-	text-align: center;
-	clear: both;
-	width: 30%;
-	float: left;
+	text-align: left;
   color: #204a87;
 }
 
 #footer {
-	float: left;
-	width: 70%;
   font-size: 0.7em;
   color: #2e3436;
   text-align: center;
-  padding-top: 30px;
 }
 
 .hidden
