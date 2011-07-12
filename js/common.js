@@ -28,6 +28,16 @@ var TT = new function()
 
 		this.ajaxHtml('tasklist',{},function(data) { 
 			$('#taskList').html(data);
+
+			$('#taskList tr').hover(
+				function() 
+				{
+					$(this).find('.taskLinks').show();
+				},
+				function()
+				{
+					$(this).find('.taskLinks').hide();
+				});
 		});
 
 	}
@@ -281,12 +291,16 @@ function timepad(val)
 }
 
 function secsToTime(d) {
+
+	if(d<0) { var neg = '-'; d*=-1; }
+	else var neg = '';
+
 	d = Number(d);
 	var h = Math.floor(d / 3600);
 	var m = Math.floor(d % 3600 / 60);
 	var s = Math.floor(d % 3600 % 60);
 
-	return timepad(h)+':'+timepad(m)+':'+timepad(s);
+	return neg+timepad(h)+':'+timepad(m)+':'+timepad(s);
 }
 
 

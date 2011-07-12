@@ -48,6 +48,31 @@ a:hover {
 	width: 40%;
 }
 
+#taskListTable
+{
+	width: 100%;
+}
+
+#taskList
+{
+	max-height: 90%;
+	overflow: auto;
+}
+
+#taskList tr td.taskName
+{
+	position: relative;
+}
+
+#taskList .taskLinks
+{
+	background-color: #eeeeec;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	padding: 3px;
+}
+
 #main_right
 {
 	float: left;

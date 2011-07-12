@@ -35,15 +35,20 @@ class timeview {
 
 	?>
 			<td class="taskStatus" id="task<?=$task['id']?>Status"><img<? if($task['status']=='started') echo ' style="display: inline;"'; ?> class="taskClock" id="task<?=$task['id']?>Clock" src="img/clock.png" /></td>
-			<td id="task<?=$task['id']?>Name" ondblclick="TT.updateTaskName(<?=$task['id']?>,'<?=addslashes(htmlentities($task['name']))?>');" onclick="TT.moveItemTo(<?=$task['id']?>);"><? for($count=0;$count<$level;$count++) echo '. . '; ?><?=htmlspecialchars($task['name'])?></td>
+			<td class="taskName" id="task<?=$task['id']?>Name" ondblclick="TT.updateTaskName(<?=$task['id']?>,'<?=addslashes(htmlentities($task['name']))?>');" onclick="TT.moveItemTo(<?=$task['id']?>);">
+				<div><? for($count=0;$count<$level;$count++) echo '. . '; ?><?=htmlspecialchars($task['name'])?></div>
+				<div class="taskLinks hidden" style="text-align: right;">
+					<a href="javascript: TT.viewTaskLog(<?=$task['id']?>);">[view]</a> 
+					<a href="javascript: TT.moveItemFrom(<?=$task['id']?>);">[move]</a>
+					<a href="javascript: TT.deleteTask(<?=$task['id']?>);">[delete]</a>
+				</div>
+			</td>
 			<td class="taskTime" id="task<?=$task['id']?>Time"><?=$this->secsToTime($this->CI->timedb->taskTime($task['id']))?></td>
 			<td class="taskTime" id="task<?=$task['id']?>Total"><?=$this->secsToTime($this->CI->timedb->taskTotalTime($task['id']))?></td>
-			<td id="task<?=$task['id']?>Actions">
-				<a href="javascript: TT.viewTaskLog(<?=$task['id']?>);"><img src="img/log.png" alt="View Log" border="0" /></a> 
+			<td id="task<?=$task['id']?>Actions" nowrap="nowarp">
+				
 				<a href="javascript: TT.startTask(<?=$task['id']?>);"><img src="img/start.png" alt="Start" border="0" /></a> 
 				<a href="javascript: TT.endTask(<?=$task['id']?>);"><img src="img/stop.png" alt="Stop/Pause" border="0" /></a> 
-				<a href="javascript: TT.moveItemFrom(<?=$task['id']?>);"><img src="img/move.png" alt="Move" border="0" /></a>
-				<a href="javascript: TT.deleteTask(<?=$task['id']?>);"><img src="img/delete.png" alt="Delete" border="0" /></a> 
 			</td>
 	<?
 
@@ -61,9 +66,6 @@ EOD;
 			foreach($tasks as $task) { ?>
 		 <tr id="task<?=$task['id']?>">
 				<? $this->taskRow($task,$level); ?>
-		 </tr>
-		 <tr id="task<?=$task['id']?>LogRow" class="taskLogRow">
-				<td class="taskLogArea" id="task<?=$task['id']?>LogArea" colspan="5"></td>
 		 </tr>
 			<? $this->taskList($task['id'],($level+1)) ?>
 			<? } 
