@@ -32,12 +32,12 @@
 			<td class="end"></td>
 			<td class="time"></td>
 			<td class="notes"></td>
-			<td><img class="delete" src="img/delete.png" alt="Delete" border="0"></td>
+			<td class="buttons"><img class="delete" src="img/delete.png" alt="Delete" border="0"></td>
 		</tr>
 		</table>
 
 		<table id="log" class="worklog hidden">
-		<thead><th>Start</th><th>End</th><th>Time</th><th>Notes</th><th>&nbsp;</th></thead>
+		<thead><th class="start">Start</th><th class="end">End</th><th class="time">Time</th><th class="notes">Notes</th><th class="buttons">&nbsp;</th></thead>
 		<tbody>
 		</tbody>
 		</table> 
@@ -49,7 +49,7 @@
 	</div>
 
 	<div id="footer"> 
-		Copyright &copy; 2011 Michael Gagnon | v0.2a1 (we have bugs) | <a href="http://www.gnu.org/licenses/gpl-3.0.html">GPLv3 License</a> | <a href="http://tango.freedesktop.org/">Tango Colors and Icons</a>
+		Copyright &copy; 2011 Michael Gagnon | <? include('VERSION'); ?> | <a href="http://www.gnu.org/licenses/gpl-3.0.html">GPLv3 License</a> | <a href="http://tango.freedesktop.org/">Tango Colors and Icons</a>
 	</div>
 
 </div>

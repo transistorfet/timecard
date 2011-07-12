@@ -73,10 +73,50 @@ a:hover {
 	padding: 3px;
 }
 
+#taskList .buttons
+{
+	width: 44px;
+}
+
+#taskList .status
+{
+	width: 22px;
+}
+
+#taskList .time
+{
+	width: 55px;
+	text-align: center;
+}
+
+
 #main_right
 {
 	float: left;
-	width: 60%;
+	width: 57%;
+	text-align: center;
+	margin-left: 3%;
+}
+
+#log
+{
+	width: 100%;
+}
+
+#log .buttons
+{
+	width: 22px;
+}
+
+#log .start, #log .end
+{
+	width: 125px;
+	text-align: center;
+}
+
+#log .time
+{
+	width: 55px;
 	text-align: center;
 }
 
@@ -112,11 +152,6 @@ a:hover {
 .hidden
 {
 	display: none;
-}
-
-.taskStatus
-{
-	width: 22px;
 }
 
 .taskLogRow {
