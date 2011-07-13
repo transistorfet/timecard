@@ -34,10 +34,10 @@ class timeview {
 	function taskRow($task,$level) {
 
 	?>
-			<td class="status" id="task<?=$task['id']?>Status"><img<? if($task['status']=='started') echo ' style="display: inline;"'; ?> class="taskClock" id="task<?=$task['id']?>Clock" src="img/clock.png" /></td>
-			<td class="taskName" id="task<?=$task['id']?>Name" ondblclick="TT.updateTaskName(<?=$task['id']?>,'<?=addslashes(htmlentities($task['name']))?>');" onclick="TT.moveItemTo(<?=$task['id']?>);">
+			<td class="status"><img<? if($task['status']=='started') echo ' style="display: inline;"'; ?> class="clock" src="img/clock.png" /></td>
+			<td class="name" ondblclick="TT.updateTaskName(<?=$task['id']?>,'<?=addslashes(htmlentities($task['name']))?>');" onclick="TT.moveItemTo(<?=$task['id']?>);">
 				<div><? for($count=0;$count<$level;$count++) echo '. . '; ?><?=htmlspecialchars($task['name'])?></div>
-				<div class="taskLinks hidden" style="text-align: right;">
+				<div class="links hidden" style="text-align: right;">
 					<a href="javascript: TT.viewTaskLog(<?=$task['id']?>);">[view]</a> 
 					<a href="javascript: TT.moveItemFrom(<?=$task['id']?>);">[move]</a>
 					<a href="javascript: TT.deleteTask(<?=$task['id']?>);">[delete]</a>
@@ -57,12 +57,12 @@ class timeview {
 		if($tasks=$this->CI->timedb->taskList($parent)) {
 
 			if($parent==0) echo <<<EOD
-<table id="taskListTable">
+<table>
 	<tr><th>&nbsp;</th><th onclick="TT.moveItemTo(0);">Task Name</th><th>Time</th><th>Total</th><th>&nbsp;</th></tr>
 EOD;
 
 			foreach($tasks as $task) { ?>
-		 <tr id="task<?=$task['id']?>">
+		 <tr data-id="<?=$task['id']?>">
 				<? $this->taskRow($task,$level); ?>
 		 </tr>
 			<? $this->taskList($task['id'],($level+1)) ?>

@@ -12,9 +12,9 @@
 
 	<h1 id="project_name">phpTimecard v0.2a1</h1>
 
-	<div id="main_left">
+	<div id="tasklist_container">
 
-		<div id="taskList">
+		<div id="tasklist">
 			Loading task list...
 		</div>
 
@@ -24,9 +24,9 @@
 
 	</div>
 
-	<div id="main_right">
+	<div id="worklog_container">
 
-		<table class="hidden" id="log_row_template">
+		<table class="hidden" id="worklog_row_template">
 		<tr>
 			<td class="start"></td>
 			<td class="end"></td>
@@ -36,7 +36,7 @@
 		</tr>
 		</table>
 
-		<table id="log" class="worklog hidden">
+		<table id="worklog" class="worklog hidden">
 		<thead><th class="start">Start</th><th class="end">End</th><th class="time">Time</th><th class="notes">Notes</th><th class="buttons">&nbsp;</th></thead>
 		<tbody>
 		</tbody>

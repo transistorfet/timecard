@@ -1,16 +1,11 @@
-body {
+/* MAIN AND COMMON */
 
+body 
+{
   background-color: #eeeeec;
   font-family: sans-serif;
   font-size: 0.9em;
   color: #2e3436;
-
-}
-
-#container
-{
-	min-width: 960px;
-	max-width: 1400px;
 }
 
 table
@@ -42,29 +37,55 @@ a:hover {
 	text-decoration: underline;
 }
 
-#main_left
+.hidden
+{
+	display: none;
+}
+
+#container
+{
+	min-width: 960px;
+	max-width: 1400px;
+}
+
+
+/* HEADER AREA */
+
+#project_name {
+	text-align: left;
+  color: #204a87;
+}
+
+
+/* MAIN LEFT (TASKLIST) */
+
+#tasklist_container
 {
 	float: left;
 	width: 40%;
 }
 
-#taskListTable
+#tasklist table
 {
 	width: 100%;
 }
 
-#taskList
+#tasklist
 {
 	max-height: 90%;
 	overflow: auto;
 }
 
-#taskList tr td.taskName
+#tasklist .clock {
+  display: none;
+}
+
+#tasklist tr td.name
 {
 	position: relative;
 }
 
-#taskList .taskLinks
+#tasklist .links
 {
 	background-color: #eeeeec;
 	position: absolute;
@@ -73,48 +94,17 @@ a:hover {
 	padding: 3px;
 }
 
-#taskList .buttons
+#tasklist .buttons
 {
 	width: 44px;
 }
 
-#taskList .status
+#tasklist .status
 {
 	width: 22px;
 }
 
-#taskList .time
-{
-	width: 55px;
-	text-align: center;
-}
-
-
-#main_right
-{
-	float: left;
-	width: 57%;
-	text-align: center;
-	margin-left: 3%;
-}
-
-#log
-{
-	width: 100%;
-}
-
-#log .buttons
-{
-	width: 22px;
-}
-
-#log .start, #log .end
-{
-	width: 125px;
-	text-align: center;
-}
-
-#log .time
+#tasklist .time
 {
 	width: 55px;
 	text-align: center;
@@ -129,6 +119,42 @@ a:hover {
   padding-top: 15px;
 }
 
+
+/* MAIN RIGHT (WORKLOG) */
+
+#worklog_container
+{
+	float: left;
+	width: 57%;
+	text-align: center;
+	margin-left: 3%;
+}
+
+#worklog
+{
+	width: 100%;
+}
+
+#worklog .buttons
+{
+	width: 22px;
+}
+
+#worklog .start, #worklog .end
+{
+	width: 125px;
+	text-align: center;
+}
+
+#worklog .time
+{
+	width: 55px;
+	text-align: center;
+}
+
+
+/* FOOTER AREA */
+
 #hint {
 	clear: both;
   text-align: center;
@@ -138,47 +164,9 @@ a:hover {
 	padding-bottom: 80px;
 }
 
-#project_name {
-	text-align: left;
-  color: #204a87;
-}
-
 #footer {
   font-size: 0.7em;
   color: #2e3436;
   text-align: center;
 }
-
-.hidden
-{
-	display: none;
-}
-
-.taskLogRow {
-  
-  display: none;
-
-} 
-
-.taskClock {
-  display: none;
-}
-
-.logDateTime {
-  width: 150px;
-}
-
-.logTime {
-  width: 75px;
-}
-
-.logActions {
-  width: 50px;
-}
-
-
-
-
-
-
 

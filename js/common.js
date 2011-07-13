@@ -27,16 +27,16 @@ var TT = new function()
 	{
 
 		this.ajaxHtml('tasklist',{},function(data) { 
-			$('#taskList').html(data);
+			$('#tasklist').html(data);
 
-			$('#taskList tr').hover(
+			$('#tasklist tr').hover(
 				function() 
 				{
-					$(this).find('.taskLinks').show();
+					$(this).find('.links').show();
 				},
 				function()
 				{
-					$(this).find('.taskLinks').hide();
+					$(this).find('.links').hide();
 				});
 		});
 
@@ -49,7 +49,7 @@ var TT = new function()
 		{
 
 			if (request != 'error') {
-				document.getElementById('task'+id+'Clock').style.display='inline';
+				$('#tasklist tr[data-id='+id+'] .clock').css('display','inline');
 				TT.viewTaskLog(id);		
 			}
 
@@ -64,8 +64,9 @@ var TT = new function()
 		{
 
 			if (request != 'error') {
-				document.getElementById('task'+id+'Clock').style.display='none';
+				// $('#tasklist tr[data-id='+id+'] .clock').css('display','none');
 				TT.viewTaskLog(id);
+				TT.updateTaskList();
 			}
 
 		});
@@ -75,7 +76,7 @@ var TT = new function()
 	this.viewTaskLog = function(id)
 	{
 
-		$('#log tbody').html('');
+		$('#worklog tbody').html('');
 
 		this.ajax('log',{'i':id},function(data)
 		{
@@ -83,7 +84,7 @@ var TT = new function()
 			$.each(data.log,function(index,entry)
 			{
 
-				var $row = $('#log_row_template tr').parent().clone();
+				var $row = $('#worklog_row_template tr').parent().clone();
 		
 				$row.find('tr').attr('data-id',entry.id);	
 		
@@ -92,9 +93,9 @@ var TT = new function()
 				if(entry.end_timestamp && entry.start_timestamp) $row.find('.time').text(secsToTime(entry.end_timestamp - entry.start_timestamp));
 				$row.find('.notes').text(entry.notes);
 
-				$('#log tbody').append($row.html());
+				$('#worklog tbody').append($row.html());
 
-				$row = $('#log tr[data-id='+entry.id+']');
+				$row = $('#worklog tr[data-id='+entry.id+']');
 
 				$row.find('.start').dblclick(function() { TT.updateLogStart(id,entry.id,entry.start); });
 				$row.find('.end').dblclick(function() { TT.updateLogEnd(id,entry.id,entry.end); });
@@ -103,7 +104,7 @@ var TT = new function()
 
 			});
 
-			$('#log').show();
+			$('#worklog').show();
 
 		});
 
@@ -168,7 +169,7 @@ var TT = new function()
 	this.moveItemFrom = function(id) 
 	{
 		moveFrom = id;	
-		document.getElementById('msg').innerHTML = 'Move to where?	Click task name, or "task name" in header for top-level.';
+		$('#msg').html('Move to where?	Click task name, or "task name" in header for top-level.');
 	}
 
 
@@ -177,7 +178,7 @@ var TT = new function()
 
 		if(moveFrom) {
 
-			document.getElementById('msg').innerHTML='';
+			$('#msg').html('');
 
 			this.ajaxHtml('movetask',{'f':moveFrom,'t':id},function(request)
 			{
@@ -205,8 +206,7 @@ var TT = new function()
 			{
 
 				if(request == 'ok') {
-					document.getElementById('task'+id+'Name').innerHTML=newName;
-					document.getElementById('task'+id+'Name').setAttribute('ondblclick','TT.updateTaskName('+id+',"'+addslashes(newName)+'");');
+					TT.updateTaskList();
 				}
 
 			});
@@ -303,25 +303,9 @@ function secsToTime(d) {
 	return neg+timepad(h)+':'+timepad(m)+':'+timepad(s);
 }
 
-
-
-
-function urlencode(s) {
-	s = encodeURIComponent(s);
-	return s.replace(/~/g,'%7E').replace(/%20/g,'+');
-}
-
-function addslashes(str) {
-	str=str.replace(/\\/g,'\\\\');
-	str=str.replace(/\'/g,'\\\'');
-	str=str.replace(/\"/g,'\\"');
-	str=str.replace(/\0/g,'\\0');
-	return str;
-}
-
-
-function initialize() {
+$(document).ready(function()
+{
 
 	TT.updateTaskList();
 
-}
+});
