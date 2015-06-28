@@ -1,16 +1,17 @@
+<!DOCTYPE html>
 <html>
 <head>
 	<title>phpTimecard</title>
 	<link href="<?=base_url()?>css/common.css" rel="stylesheet" type="text/css" />
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script type="text/javascript" src="<?=base_url()?>js/common.js"></script>
 </head>
 
-<body onload="initialize();">
+<body>
 
 <div id="container">
 
-	<h1 id="project_name">phpTimecard v0.2a1</h1>
+	<h1 id="project_name">phpTimecard v0.3</h1>
 
 	<div id="tasklist_container">
 
@@ -49,7 +50,7 @@
 	</div>
 
 	<div id="footer"> 
-		Copyright &copy; 2011 Michael Gagnon | <? include('VERSION'); ?> | <a href="http://www.gnu.org/licenses/gpl-3.0.html">GPLv3 License</a> | <a href="http://tango.freedesktop.org/">Tango Colors and Icons</a>
+		Copyright &copy; 2011 Ellie Brook Gagnon | <? include('VERSION'); ?> | <a href="http://www.gnu.org/licenses/gpl-3.0.html">GPLv3 License</a> | <a href="http://tango.freedesktop.org/">Tango Colors and Icons</a>
 	</div>
 
 </div>

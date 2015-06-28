@@ -26,6 +26,7 @@ CREATE TABLE `tasks` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `name` varchar(255) NOT NULL,
   `parent` int(10) unsigned NOT NULL,
+  `archived` int(10) unsigned NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `parent` (`parent`)
 ) ENGINE=MyISAM AUTO_INCREMENT=92 DEFAULT CHARSET=latin1;
