@@ -1,63 +1,113 @@
--- MySQL dump 10.11
+-- phpMyAdmin SQL Dump
+-- version 4.2.12deb2
+-- http://www.phpmyadmin.net
 --
--- Host: localhost    Database: timecard
--- ------------------------------------------------------
--- Server version	5.0.51a-3ubuntu5.8
+-- Host: localhost
+-- Generation Time: Dec 03, 2015 at 12:52 PM
+-- Server version: 5.5.44-0+deb8u1
+-- PHP Version: 5.6.9-0+deb8u1
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Database: `pikalabs_timecard`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `invoices`
+--
+
+CREATE TABLE IF NOT EXISTS `invoices` (
+`id` int(11) NOT NULL,
+  `taskid` int(11) DEFAULT NULL,
+  `number` varchar(16) DEFAULT NULL,
+  `issued` date DEFAULT NULL,
+  `amount` float DEFAULT NULL,
+  `notes` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  `paid` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `tasks`
 --
 
-DROP TABLE IF EXISTS `tasks`;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-CREATE TABLE `tasks` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `name` varchar(255) NOT NULL,
-  `parent` int(10) unsigned NOT NULL,
-  `archived` int(10) unsigned NOT NULL,
-  PRIMARY KEY  (`id`),
-  KEY `parent` (`parent`)
-) ENGINE=MyISAM AUTO_INCREMENT=92 DEFAULT CHARSET=latin1;
-SET character_set_client = @saved_cs_client;
+CREATE TABLE IF NOT EXISTS `tasks` (
+`id` int(11) NOT NULL,
+  `name` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  `parent` int(11) DEFAULT '0',
+  `archived` int(11) DEFAULT '0',
+  `rate_actual` float DEFAULT NULL,
+  `rate_estimated` float DEFAULT NULL,
+  `rate_potential` float DEFAULT NULL,
+  `total_budget` float DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `worklog`
 --
 
-DROP TABLE IF EXISTS `worklog`;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-CREATE TABLE `worklog` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `taskid` int(10) unsigned NOT NULL,
-  `start` datetime NOT NULL,
-  `end` datetime default NULL,
-  `notes` varchar(255) NOT NULL,
-  PRIMARY KEY  (`id`),
-  KEY `start` (`start`),
-  KEY `taskid` (`taskid`)
-) ENGINE=MyISAM AUTO_INCREMENT=921 DEFAULT CHARSET=latin1;
-SET character_set_client = @saved_cs_client;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+CREATE TABLE IF NOT EXISTS `worklog` (
+`id` int(11) NOT NULL,
+  `taskid` int(11) DEFAULT NULL,
+  `start` datetime DEFAULT NULL,
+  `end` datetime DEFAULT NULL,
+  `notes` text CHARACTER SET utf8 COLLATE utf8_unicode_ci
+) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=latin1;
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `invoices`
+--
+ALTER TABLE `invoices`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tasks`
+--
+ALTER TABLE `tasks`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `worklog`
+--
+ALTER TABLE `worklog`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `invoices`
+--
+ALTER TABLE `invoices`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `tasks`
+--
+ALTER TABLE `tasks`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `worklog`
+--
+ALTER TABLE `worklog`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=125;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2011-07-09 20:08:09

@@ -2,29 +2,12 @@
 
 class Timeview extends CI_Model {
 
-	function secsToTime($tmp) {
-
-		if($tmp<0) { $neg='-'; $tmp*=-1; }
-		else $neg='';
-
-		$tmp=round($tmp);
-
-		$seconds = $tmp % 60;
-		
-		$tmp -= $seconds;
-		$tmp /= 60;
-
-		$minutes = $tmp % 60;
-	
-		$tmp -= $minutes;
-		$tmp /= 60;
-
-		$hours = $tmp;
-
-		return $neg.$hours.':'.($minutes < 10 ? '0' : '').$minutes.':'.($seconds < 10 ? '0' : '').$seconds;
-
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->helper('time');
 	}
-	
+
 	function taskRow($task,$level) {
 
 		?>
@@ -37,8 +20,8 @@ class Timeview extends CI_Model {
 					<a href="javascript: TT.deleteTask(<?=$task['id']?>);">[delete]</a>
 				</div>
 			</td>
-			<td class="time" id="task<?=$task['id']?>Time"><?=$this->secsToTime($this->timedb->taskTime($task['id']))?></td>
-			<td class="time" id="task<?=$task['id']?>Total"><?=$this->secsToTime($this->timedb->taskTotalTime($task['id']))?></td>
+			<td class="time" id="task<?=$task['id']?>Time"><?=secsToTime($this->timedb->taskTime($task['id']))?></td>
+			<td class="time" id="task<?=$task['id']?>Total"><?=secsToTime($this->timedb->taskTotalTime($task['id']))?></td>
 			<td class="buttons" id="task<?=$task['id']?>Actions" nowrap="nowarp">
 				<a href="javascript: TT.startTask(<?=$task['id']?>);"><img src="img/start.png" alt="Start" border="0" /></a><a href="javascript: TT.endTask(<?=$task['id']?>);"><img src="img/stop.png" alt="Stop/Pause" border="0" /></a> 
 			</td>

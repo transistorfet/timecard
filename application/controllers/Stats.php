@@ -75,7 +75,7 @@ class Stats extends CI_Controller {
 
 		}
 
-		$this->load->view('stats/today',array('total_hours'=>$total_hours,'rows'=>$rows,'total_rate_actual'=>$total_rate_actual,'total_rate_estimated'=>$total_rate_estimated,'total_rate_potential'=>$total_rate_potential));
+		$this->load->view('stats/today',array('days_back'=>$days_back,'total_hours'=>$total_hours,'rows'=>$rows,'total_rate_actual'=>$total_rate_actual,'total_rate_estimated'=>$total_rate_estimated,'total_rate_potential'=>$total_rate_potential));
 
 	}
 

@@ -6,7 +6,7 @@ var TT = new function()
 	this.ajaxHtml = function(action,params,callback)
 	{
 
-		$.get('index.php/ajax/'+action, params, function(data)
+		$.get(base_url+'index.php/worklog/'+action, params, function(data)
 		{
 			callback(data);
 		},'html');
@@ -16,7 +16,7 @@ var TT = new function()
 	this.ajax = function(action,params,callback)
 	{
 
-		$.get('index.php/ajax/'+action, params, function(data)
+		$.get(base_url+'index.php/worklog/'+action, params, function(data)
 		{
 			callback(data);
 		},'json');
@@ -25,6 +25,7 @@ var TT = new function()
 
 	this.updateTaskList = function() 
 	{
+		var opened = $('#tasklist tr.opened').attr('data-id');
 
 		this.ajaxHtml('tasklist',{},function(data) { 
 			$('#tasklist').html(data);
@@ -37,8 +38,11 @@ var TT = new function()
 				function()
 				{
 					$(this).find('.links').hide();
-				});
+				}
+			);
 		});
+
+		if (opened) $('#tasklist tr[data-id="'+opened+'"]').addClass('opened');
 
 	}
 
@@ -103,6 +107,9 @@ var TT = new function()
 				$row.find('.delete').click(function() { TT.deleteLog(id,entry.id); });
 
 			});
+
+			$('#tasklist tr').removeClass('opened');
+			$('#tasklist tr[data-id="'+id+'"]').addClass('opened');
 
 			$('#worklog').show();
 
@@ -279,6 +286,42 @@ var TT = new function()
 
 	}
 
+	this.updateTotalBudget = function(id,defaultvalue)
+	{
+
+		var newValue = prompt('Enter new total budget: ',defaultvalue);
+
+		if(newValue) {
+
+			this.ajaxHtml('totalbudget',{'i':id,'a':newValue},function(request)
+			{
+
+				$(window).reload();
+
+			});
+
+		}
+
+	}
+
+	this.updateTotalInvoiced = function(id,defaultvalue)
+	{
+
+		var newValue = prompt('Enter new total budget: ',defaultvalue);
+
+		if(newValue) {
+
+			this.ajaxHtml('totalinvoiced',{'i':id,'a':newValue},function(request)
+			{
+
+				$(window).reload();
+
+			});
+
+		}
+
+	}
+
 }
 
 // str pad with length = 2, fill = '0', left-fill.
@@ -306,6 +349,11 @@ function secsToTime(d) {
 $(document).ready(function()
 {
 
-	TT.updateTaskList();
+	if ($('#tasklist').length > 0)
+		TT.updateTaskList();
+
+	$('#days_back').change(function () {
+		window.location = base_url+'index.php/stats/daysback/'+$(this).val();
+	});
 
 });

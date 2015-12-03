@@ -4,14 +4,19 @@
 	<title>phpTimecard</title>
 	<link href="<?=base_url()?>css/common.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	<script type="text/javascript" src="<?=base_url()?>js/common.js"></script>
+	<script type="text/javascript">base_url='<?=base_url()?>';</script>
+	<script type="text/javascript" src="<?=base_url()?>js/worklog.js"></script>
 </head>
 
 <body>
 
 <div id="container">
 
-	<h1 id="project_name">phpTimecard v0.3</h1>
+	<h2 id="project_name">phpTimecard v0.3</h2>
+
+	<div id="links_container">
+		Worklog | <a href="<?=base_url()?>index.php/billing/">Billing</a> | <a href="<?=base_url()?>index.php/stats/daysback/30">Stats</a>
+	</div>
 
 	<div id="tasklist_container">
 

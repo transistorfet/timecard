@@ -1,6 +1,6 @@
 <?
 
-class Ajax extends CI_Controller {
+class Worklog extends CI_Controller {
 
 	public function __construct()
 	{

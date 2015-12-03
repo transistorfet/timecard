@@ -37,6 +37,11 @@ a:hover {
 	text-decoration: underline;
 }
 
+tr.opened
+{
+  background-color: #ddddd2;
+}
+
 .hidden
 {
 	display: none;
@@ -52,10 +57,14 @@ a:hover {
 /* HEADER AREA */
 
 #project_name {
-	text-align: left;
+  text-align: left;
   color: #204a87;
 }
 
+#links_container {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
 
 /* MAIN LEFT (TASKLIST) */
 
@@ -156,17 +165,33 @@ a:hover {
 /* FOOTER AREA */
 
 #hint {
-	clear: both;
+  clear: both;
   text-align: center;
   color: #2e3436;
   font-size: 0.8em;
   padding-top: 50px;
-	padding-bottom: 80px;
+  padding-bottom: 80px;
 }
 
 #footer {
   font-size: 0.7em;
   color: #2e3436;
   text-align: center;
+}
+
+/* BILLING SUMMARY */
+
+#billing
+{
+  width: 100%;
+  border: 1;
+  cellspacing: 0;
+  cellpadding: 4;
+  margin-bottom: 2em;
+}
+
+#invoices
+{
+  margin-bottom: 0.5em;
 }
 
