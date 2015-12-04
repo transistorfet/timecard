@@ -5,7 +5,7 @@
 	<link href="<?=base_url()?>css/common.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script type="text/javascript">base_url='<?=base_url()?>';</script>
-	<script type="text/javascript" src="<?=base_url()?>js/worklog.js"></script>
+	<script type="text/javascript" src="<?=base_url()?>js/stats.js"></script>
 </head>
 
 <body>
@@ -18,12 +18,12 @@
 		<a href="<?=base_url()?>">Worklog</a> | <a href="<?=base_url()?>index.php/billing/">Billing</a> | Stats
 	</div>
 
-	<table border="1" cellspacing="0" cellpadding="4">
+	<table id="stats" border="1" cellspacing="0" cellpadding="4">
 	<thead>
 		<th>Notes</th>
-		<th>Rate Actual Hourly</th>
-		<th>Rate Estimated Hourly</th>
-		<th>Rate Potential Hourly</th>
+		<th>Rate Actual Hourly*</th>
+		<th>Rate Estimated Hourly*</th>
+		<th>Rate Potential Hourly*</th>
 		<th>Hours</th>
 		<th>Earned Actual</th>
 		<th>Earned Estimated</th>
@@ -31,11 +31,11 @@
 	</thead>
 	<tbody>
 	<? foreach($rows as $row) { ?>
-	<tr>
+	<tr data-id="<?=$row['taskid']?>">
 		<td><?=htmlspecialchars($row['notes'])?></td>
-		<td>$<?=money_format('%!i',$row['rate_actual_hourly'])?></td>
-		<td>$<?=money_format('%!i',$row['rate_estimated_hourly'])?></td>
-		<td>$<?=money_format('%!i',$row['rate_potential_hourly'])?></td>
+		<td class="rate_actual">$<?=money_format('%!i',$row['rate_actual_hourly'])?></td>
+		<td class="rate_estimated">$<?=money_format('%!i',$row['rate_estimated_hourly'])?></td>
+		<td class="rate_potential">$<?=money_format('%!i',$row['rate_potential_hourly'])?></td>
 		<td><?=round($row['hours'],2)?></td>
 		<td>$<?=money_format('%!i',$row['rate_actual'])?></td>
 		<td>$<?=money_format('%!i',$row['rate_estimated'])?></td>

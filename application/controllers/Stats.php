@@ -1,6 +1,12 @@
 <?
 
-class Stats extends CI_Controller {
+class Stats extends CI_Controller
+{
+
+	public function index()
+	{
+		redirect('stats/daysback/30');
+	}
 
 	public function daysback($days_back=0)
 	{
@@ -59,14 +65,17 @@ class Stats extends CI_Controller {
 			$rate_estimated = $rate_estimated_cache[$entry->taskid]*$num_hours;
 			$rate_potential = $rate_potential_cache[$entry->taskid]*$num_hours;
 
-			$rows[] = array('notes'=>$entry->notes,
-									'rate_actual_hourly'=>$rate_actual_cache[$entry->taskid],
-									'rate_potential_hourly'=>$rate_potential_cache[$entry->taskid],
-									'rate_estimated_hourly'=>$rate_estimated_cache[$entry->taskid],
-									'hours'=>$num_hours,
-									'rate_actual'=>$rate_actual,
-									'rate_potential'=>$rate_potential,
-									'rate_estimated'=>$rate_estimated);
+			$rows[] = array(
+				'taskid'=>$entry->taskid,
+				'notes'=>$entry->notes,
+				'rate_actual_hourly'=>$rate_actual_cache[$entry->taskid],
+				'rate_potential_hourly'=>$rate_potential_cache[$entry->taskid],
+				'rate_estimated_hourly'=>$rate_estimated_cache[$entry->taskid],
+				'hours'=>$num_hours,
+				'rate_actual'=>$rate_actual,
+				'rate_potential'=>$rate_potential,
+				'rate_estimated'=>$rate_estimated
+			);
 
 			$total_hours += $num_hours;
 			$total_rate_actual += $rate_actual;
@@ -77,6 +86,21 @@ class Stats extends CI_Controller {
 
 		$this->load->view('stats/today',array('days_back'=>$days_back,'total_hours'=>$total_hours,'rows'=>$rows,'total_rate_actual'=>$total_rate_actual,'total_rate_estimated'=>$total_rate_estimated,'total_rate_potential'=>$total_rate_potential));
 
+	}
+
+	public function editstats()
+	{
+		$this->load->model('billingdb');
+
+		$attribs = array('rate_actual', 'rate_estimated', 'rate_potential');
+
+		if(isset($_GET['i'])) $id=$_GET['i'];
+		if(isset($_GET['a'])) $name=$_GET['a'];
+		if(isset($_GET['v'])) $value=$_GET['v'];
+		if(!isset($id) || !isset($name) || !in_array($name,$attribs) || !isset($value)) die('error');
+
+		if($this->billingdb->editTaskAttribute($id,$name,$value)) echo 'ok';
+		else echo 'error';
 	}
 
 }

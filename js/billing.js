@@ -42,11 +42,20 @@ var TI = new function()
 				$row.find('.total_invoiced').text(formatMoney(entry.total_invoiced));
 				$row.find('.total_unbilled').text(formatMoney(entry.total_done - entry.total_invoiced));
 				$row.find('.total_remaining').text(formatMoney(entry.total_budget > 0 ? entry.total_budget - entry.total_invoiced : 0));
-				$row.find('.percent_remaining').text((entry.total_budget > 0 ? entry.total_invoiced / entry.total_budget * 100.0 : 0).toFixed(0));
+				$row.find('.percent_remaining').text((entry.total_budget > 0 ? entry.total_invoiced / entry.total_budget * 100.0 : 0).toFixed(0) + '%');
 
 				$('#billing tbody').append($row.html());
 
 			});
+
+			var $row = $('#billing_totals_row_template tr').parent().clone();
+
+			$row.find('.total_done').text(formatMoney(data.total_done));
+			$row.find('.total_invoiced').text(formatMoney(data.total_invoiced));
+			$row.find('.total_unbilled').text(formatMoney(data.total_done - data.total_invoiced));
+			$row.find('.total_remaining').text(formatMoney(data.total_budget > data.total_invoiced ? data.total_budget - data.total_invoiced : 0));
+
+			$('#billing tbody').append($row.html());
 
 			if (opened) $('#billing tr[data-id="'+opened+'"]').addClass('opened');
 

@@ -16,13 +16,7 @@ class Billing extends CI_Controller {
 
 	public function summary()
 	{
-		$tasks=$this->billingdb->getTaskList(0);
-		$total_invoiced=$this->billingdb->totalTaskInvoiced(0);
-
-		$total_done=0;
-		foreach($tasks as $task) if($task['parent']==0) $total_done += $task['total_done'];
-
-		$this->load->view('billing', array('tasks'=>$tasks,'total_done'=>$total_done,'total_invoiced'=>$total_invoiced));
+		$this->load->view('billing');
 	}
 
 	public function invoices($id)
@@ -39,9 +33,14 @@ class Billing extends CI_Controller {
 		$total_invoiced=$this->billingdb->totalTaskInvoiced(0);
 
 		$total_done=0;
-		foreach($tasks as $task) if($task['parent']==0) $total_done += $task['total_done'];
+		$total_budget=0;
+		foreach($tasks as $task) {
+			$total_budget += $task['total_budget'];
+			if($task['parent']==0)
+				$total_done += $task['total_done'];
+		}
 
-		echo json_encode(array('tasks'=>$tasks,'total_done'=>$total_done,'total_invoiced'=>$total_invoiced));
+		echo json_encode(array('tasks'=>$tasks,'total_budget'=>$total_budget,'total_done'=>$total_done,'total_invoiced'=>$total_invoiced));
 	}
 
 	public function editbilling()

@@ -34,6 +34,17 @@
 		</tr>
 		</table>
 
+		<table class="hidden" id="billing_totals_row_template">
+		<tr>
+			<td colspan="4" align="right">Totals:</td>  
+			<td class="total_done"></td>
+			<td class="total_invoiced"></td>
+			<td class="total_unbilled"></td>
+			<td class="total_remaining"></td>
+			<td></td>
+		</tr>
+		</table>
+
 		<table id="billing">
 		<thead>
 			<th>Task</th>

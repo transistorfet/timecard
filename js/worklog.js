@@ -139,7 +139,7 @@ var TT = new function()
 
 	this.newTask = function()
 	{
-		taskName=prompt('Enter task name:');
+		var taskName=prompt('Enter task name:');
 
 		if(taskName) {
 
@@ -176,9 +176,14 @@ var TT = new function()
 	this.moveItemFrom = function(id) 
 	{
 		moveFrom = id;	
-		$('#msg').html('Move to where?	Click task name, or "task name" in header for top-level.');
+		$('#msg').html('Move to where?<br/> Click task name, or "task name" in header for top-level.<br/> Click here to cancel.');
 	}
 
+	this.moveCancel = function()
+	{
+		moveFrom = false;
+		$('#msg').html('');
+	}
 
 	this.moveItemTo = function(id)
 	{
@@ -205,7 +210,7 @@ var TT = new function()
 	this.updateTaskName = function(id,defaultname)
 	{
 
-		newName = prompt('Enter new task name: ',defaultname);
+		var newName = prompt('Enter new task name: ',defaultname);
 
 		if(newName) {
 
@@ -225,7 +230,7 @@ var TT = new function()
 	this.updateLogNotes = function(taskid,id,defaultnotes)
 	{
 
-		newNotes = prompt('Enter new notes: ',defaultnotes);
+		var newNotes = prompt('Enter new notes: ',defaultnotes);
 
 		if(newNotes) {
 
@@ -245,7 +250,7 @@ var TT = new function()
 	this.updateLogStart = function(taskid,id,defaulttime)
 	{
 
-		newTime = prompt('Enter new start time: ',defaulttime);
+		var newTime = prompt('Enter new start time: ',defaulttime);
 
 		if(newTime) {
 
@@ -267,7 +272,7 @@ var TT = new function()
 	this.updateLogEnd = function(taskid,id,defaulttime)
 	{
 
-		newTime = prompt('Enter new end time: ',defaulttime);
+		var newTime = prompt('Enter new end time: ',defaulttime);
 
 		if(newTime) {
 
@@ -279,42 +284,6 @@ var TT = new function()
 					TT.viewTaskLog(taskid);
 
 				}
-
-			});
-
-		}
-
-	}
-
-	this.updateTotalBudget = function(id,defaultvalue)
-	{
-
-		var newValue = prompt('Enter new total budget: ',defaultvalue);
-
-		if(newValue) {
-
-			this.ajaxHtml('totalbudget',{'i':id,'a':newValue},function(request)
-			{
-
-				$(window).reload();
-
-			});
-
-		}
-
-	}
-
-	this.updateTotalInvoiced = function(id,defaultvalue)
-	{
-
-		var newValue = prompt('Enter new total budget: ',defaultvalue);
-
-		if(newValue) {
-
-			this.ajaxHtml('totalinvoiced',{'i':id,'a':newValue},function(request)
-			{
-
-				$(window).reload();
 
 			});
 
@@ -352,8 +321,6 @@ $(document).ready(function()
 	if ($('#tasklist').length > 0)
 		TT.updateTaskList();
 
-	$('#days_back').change(function () {
-		window.location = base_url+'index.php/stats/daysback/'+$(this).val();
-	});
+	$('#msg').click(function () { TT.moveCancel(); });
 
 });
