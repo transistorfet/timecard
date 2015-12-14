@@ -7,6 +7,7 @@ class Worklog extends CI_Controller {
 		parent::__construct();
 		$this->load->model('timeview');
 		$this->load->model('timedb');
+		$this->load->helper('time');
 	}
 
 	public function taskList()
@@ -39,12 +40,12 @@ class Worklog extends CI_Controller {
 
 		if($endTask) {
 
-			echo $endTask['id'].','.$endTask['end'].','.$this->timeview->secsToTime($endTask['time'])."\n";
+			echo $endTask['id'].','.$endTask['end'].','.secsToTime($endTask['time'])."\n";
 
 			$task = $this->timedb->task($id);
 
 			while(TRUE) {
-				echo $task['id'].','.$this->timeview->secsToTime($this->timedb->taskTime($task['id'])).','.$this->timeview->secsToTime($this->timedb->taskTotalTime($task['id']));
+				echo $task['id'].','.secsToTime($this->timedb->taskTime($task['id'])).','.secsToTime($this->timedb->taskTotalTime($task['id']));
 				if($task['parent']==0) break;
 				else { $task = $this->timedb->task($task['parent']); echo "\n"; }
 			}
@@ -84,7 +85,7 @@ class Worklog extends CI_Controller {
 			$task = $this->timedb->task($logentry['taskid']);
 
 			while(TRUE) {
-				echo $task['id'].','.$this->timeview->secsToTime($this->timedb->taskTime($task['id'])).','.$this->timeview->secsToTime($this->timedb->taskTotalTime($task['id']));
+				echo $task['id'].','.secsToTime($this->timedb->taskTime($task['id'])).','.secsToTime($this->timedb->taskTotalTime($task['id']));
 				if($task['parent']==0) break;
 				else { $task = $this->timedb->task($task['parent']); echo "\n"; }
 			}
@@ -163,13 +164,13 @@ class Worklog extends CI_Controller {
 
 		if($data) { 
 
-			echo $data['start'].','.$this->timeview->secsToTime($data['time'])."\n";
+			echo $data['start'].','.secsToTime($data['time'])."\n";
 
 			$logentry= $this->timedb->logEntry($id);
 			$task = $this->timedb->task($logentry['taskid']);
 
 			while(TRUE) {
-				echo $task['id'].','.$this->timeview->secsToTime($this->timedb->taskTime($task['id'])).','.$this->timeview->secsToTime($this->timedb->taskTotalTime($task['id']));
+				echo $task['id'].','.secsToTime($this->timedb->taskTime($task['id'])).','.secsToTime($this->timedb->taskTotalTime($task['id']));
 				if($task['parent']==0) break;
 				else { $task = $this->timedb->task($task['parent']); echo "\n"; }
 			}
@@ -190,13 +191,13 @@ class Worklog extends CI_Controller {
 
 		if($data) {
 
-			echo $data['end'].','.$this->timeview->secsToTime($data['time'])."\n";
+			echo $data['end'].','.secsToTime($data['time'])."\n";
 
 			$logentry= $this->timedb->logEntry($id);
 			$task = $this->timedb->task($logentry['taskid']);
 
 			while(TRUE) {
-				echo $task['id'].','.$this->timeview->secsToTime($this->timedb->taskTime($task['id'])).','.$this->timeview->secsToTime($this->timedb->taskTotalTime($task['id']));
+				echo $task['id'].','.secsToTime($this->timedb->taskTime($task['id'])).','.secsToTime($this->timedb->taskTotalTime($task['id']));
 				if($task['parent']==0) break;
 				else { $task = $this->timedb->task($task['parent']); echo "\n"; }
 			}
